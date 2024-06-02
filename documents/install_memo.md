@@ -14,3 +14,5 @@
 rm -rf alembic/versions/*
 
 alembic revision --autogenerate -m "Update UUID to string"
+alembic upgrade head
+python app_databases/init_data.py

@@ -29,23 +29,23 @@ def init_db():
         db.commit()
         db.refresh(user)
 
-        # # Todoタスクの作成
-        # todo_task = TodoTask(
-        #     title="Sample Task",
-        #     description="This is a sample task",
-        #     owner_id=user.id  # owner_idは文字列
-        # )
-        # db.add(todo_task)
-        # db.commit()
+        # Todoタスクの作成
+        todo_task = TodoTask(
+            title="Sample Task",
+            description="This is a sample task",
+            owner_id=user.id  # owner_idは文字列
+        )
+        db.add(todo_task)
+        db.commit()
 
-        # # SNS投稿の作成
-        # post = Post(
-        #     title="Sample Post",
-        #     content="This is a sample post",
-        #     owner_id=user.id  # owner_idは文字列
-        # )
-        # db.add(post)
-        # db.commit()
+        # SNS投稿の作成
+        post = Post(
+            title="Sample Post",
+            content="This is a sample post",
+            owner_id=user.id  # owner_idは文字列
+        )
+        db.add(post)
+        db.commit()
 
     finally:
         db.close()
