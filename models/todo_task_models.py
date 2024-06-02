@@ -1,7 +1,7 @@
 # models/todo_task_models.py
 from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
-from databases.database import Base
+from app_databases.database import Base
 
 
 class TodoTask(Base):

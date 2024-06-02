@@ -2,29 +2,19 @@
 from pydantic import BaseModel, EmailStr
 from typing import Optional
 import uuid
+from fastapi_users import schemas
 
 
-class UserBase(BaseModel):
+class UserRead(schemas.BaseUser[uuid.UUID]):
     username: str
-    email: EmailStr
 
 
-class UserCreate(UserBase):
-    password: str
+class UserCreate(schemas.BaseUserCreate):
+    username: str
 
 
-class UserRead(UserBase):
-    id: uuid.UUID
+class UserUpdate(schemas.BaseUserUpdate):
+    username: Optional[str]
 
-
-class UserUpdate(UserBase):
-    password: Optional[str] = None
-
-
-class Token(BaseModel):
-    access_token: str
-    token_type: str
-
-
-class TokenData(BaseModel):
-    username: Optional[str] = None
+    class Config:
+        from_attributes = True

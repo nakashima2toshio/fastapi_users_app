@@ -1,4 +1,4 @@
 # models/init.py
-from .todo_task_models import *
-from .sns_models import *
-from .user_models import *
+from .user_models import User
+from .todo_task_models import TodoTask
+from .sns_models import Post

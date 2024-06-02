@@ -2,12 +2,13 @@
 import logging
 from logging.handlers import RotatingFileHandler
 from fastapi import FastAPI
+from models import user_models, todo_task_models, sns_models  # すべてのモデルをインポート
 from routers import todo_task_router, sns_router, user_router
-from databases.database import engine, Base
+from app_databases.database import engine, Base
 
 # ログフォーマットの設定
 formatter = logging.Formatter(
-    '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+    '%(asctime)s - %(name)s - %(levellevelname)s - %(message)s'
 )
 
 # コンソールハンドラーの設定
@@ -22,6 +23,7 @@ file_handler.setFormatter(formatter)
 logging.basicConfig(level=logging.INFO, handlers=[console_handler, file_handler])
 logger = logging.getLogger(__name__)
 
+# すべてのモデルをインポートした後にテーブルを作成
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI()

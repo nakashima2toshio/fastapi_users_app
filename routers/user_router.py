@@ -7,7 +7,10 @@ from schemas.user_schemas import UserCreate, UserRead, UserUpdate
 
 router = APIRouter()
 
-fastapi_users = FastAPIUsers(get_user_manager, [jwt_authentication])
+fastapi_users = FastAPIUsers(
+    get_user_manager,
+    [jwt_authentication]
+)
 
 router.include_router(fastapi_users.get_auth_router(jwt_authentication), prefix="/auth/jwt", tags=["auth"])
 router.include_router(fastapi_users.get_register_router(UserRead, UserCreate), prefix="/auth", tags=["auth"])
