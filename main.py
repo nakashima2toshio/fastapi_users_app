@@ -7,8 +7,18 @@ from routers import todo_task_router, sns_router, user_router
 from app_databases.database import engine, Base
 
 # ログフォーマットの設定
+"""
+%(name)s: ロガー（ロギングチャネル）の名前
+%(levelno)s: メッセージの数値型のロギングレベル（DEBUG、INFO、WARNING、ERROR、CRITICAL）
+%(levelname)s: メッセージのテキスト型のロギングレベル（"DEBUG"、"INFO"、"WARNING"、"ERROR"、"CRITICAL"）
+%(pathname)s: ロギング呼び出しが行われたソースファイルの完全なパス名（利用可能な場合）
+%(filename)s: パス名のファイル名部分
+%(module)s: モジュール（ファイル名の名前部分）
+%(lineno)d: ロギング呼び出しが行われたソースライン番号（利用可能な場合）
+%(funcName)s: 関数名
+"""
 formatter = logging.Formatter(
-    '%(asctime)s - %(name)s - %(levellevelname)s - %(message)s'
+    '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
 )
 
 # コンソールハンドラーの設定

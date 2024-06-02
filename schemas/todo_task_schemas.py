@@ -16,5 +16,7 @@ class TodoTask(TodoTaskBase):
     id: int
     owner_id: int
 
+    # class Config:
+    #     orm_mode = True
     class Config:
-        orm_mode = True
+        from_attributes = True
