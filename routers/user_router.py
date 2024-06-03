@@ -1,4 +1,5 @@
 # routers/user_router.py
+# http://127.0.0.1:8000/docs for test
 from fastapi import APIRouter
 from fastapi_users import FastAPIUsers
 from auth.user_manager import get_user_manager

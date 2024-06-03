@@ -1,25 +1,25 @@
 # tests/test_users.py
-# tests/test_users.py
+# tests/test_user.py
 from fastapi import status
-from sqlalchemy.orm import Session
 from tests.conftest import test_client
 
 
 def test_register_user(test_client):
     response = test_client.post(
         "/auth/register",
-        json={"username": "testuser", "email": "testuser@example.com", "password": "testpassword"}
+        json={"email": "user01@email.com", "password": "p@ss_u01", "is_active": True, "is_superuser": False,
+              "is_verified": False, "username": "user01"}
     )
     assert response.status_code == status.HTTP_201_CREATED
     data = response.json()
-    assert data["username"] == "testuser"
-    assert data["email"] == "testuser@example.com"
+    assert data["email"] == "user01@email.com"
+    assert data["username"] == "user01"
 
 
 def test_login_user(test_client):
     response = test_client.post(
         "/auth/jwt/login",
-        data={"username": "testuser", "password": "testpassword"}
+        data={"username": "user01@email.com", "password": "p@ss_u01"}
     )
     assert response.status_code == status.HTTP_200_OK
     data = response.json()
@@ -30,7 +30,7 @@ def test_login_user(test_client):
 def test_reset_password(test_client):
     response = test_client.post(
         "/auth/reset-password",
-        json={"email": "testuser@example.com"}
+        json={"email": "user01@email.com"}
     )
     assert response.status_code == status.HTTP_200_OK
 
@@ -38,6 +38,6 @@ def test_reset_password(test_client):
 def test_verify_user(test_client):
     response = test_client.post(
         "/auth/verify",
-        json={"email": "testuser@example.com"}
+        json={"email": "user01@email.com"}
     )
     assert response.status_code == status.HTTP_200_OK
